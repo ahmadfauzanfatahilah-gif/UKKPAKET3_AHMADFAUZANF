@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Waktu pembuatan: 24 Feb 2026 pada 10.31
+- Versi server: 10.4.6-MariaDB
+- Versi PHP: 7.3.10
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="db_pengaduan" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="pengaduan">
+                CREATE TABLE `pengaduan` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `user_id` int(11) DEFAULT NULL,
+                  `judul` varchar(100) DEFAULT NULL,
+                  `isi` text DEFAULT NULL,
+                  `tanggal` datetime DEFAULT current_timestamp(),
+                  `status` enum('menunggu','diproses','selesai') DEFAULT 'menunggu',
+                  `feedback` text DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user_id` (`user_id`),
+                  CONSTRAINT `pengaduan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="user">
+                CREATE TABLE `user` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `nama` varchar(100) NOT NULL,
+                  `username` varchar(50) NOT NULL,
+                  `password` varchar(255) NOT NULL,
+                  `role` enum('admin','siswa') NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'db_pengaduan'
+    -->
+    <database name="db_pengaduan">
+        <!-- Tabel pengaduan -->
+        <table name="pengaduan">
+            <column name="id">1</column>
+            <column name="user_id">1</column>
+            <column name="judul">tempat sampah</column>
+            <column name="isi">perbanyak lagi tempat sampah nya di sekolah ini</column>
+            <column name="tanggal">2026-02-24 14:57:18</column>
+            <column name="status">selesai</column>
+            <column name="feedback">iya</column>
+        </table>
+        <table name="pengaduan">
+            <column name="id">2</column>
+            <column name="user_id">1</column>
+            <column name="judul">kursi</column>
+            <column name="isi">banyak kursi yang patah</column>
+            <column name="tanggal">2026-02-24 16:06:49</column>
+            <column name="status">diproses</column>
+            <column name="feedback">tunggu ya ini lagi dalam proses pemesanan:)</column>
+        </table>
+        <table name="pengaduan">
+            <column name="id">3</column>
+            <column name="user_id">1</column>
+            <column name="judul">sapu</column>
+            <column name="isi">kekurangan sapu</column>
+            <column name="tanggal">2026-02-24 17:22:11</column>
+            <column name="status">menunggu</column>
+            <column name="feedback">NULL</column>
+        </table>
+        <!-- Tabel user -->
+        <table name="user">
+            <column name="id">1</column>
+            <column name="nama">ahmad</column>
+            <column name="username">ahmad</column>
+            <column name="password">202cb962ac59075b964b07152d234b70</column>
+            <column name="role">siswa</column>
+        </table>
+        <table name="user">
+            <column name="id">2</column>
+            <column name="nama">Admin Sekolah</column>
+            <column name="username">admin</column>
+            <column name="password">0192023a7bbd73250516f069df18b500</column>
+            <column name="role">admin</column>
+        </table>
+        <table name="user">
+            <column name="id">3</column>
+            <column name="nama"></column>
+            <column name="username">udin </column>
+            <column name="password">202cb962ac59075b964b07152d234b70</column>
+            <column name="role">siswa</column>
+        </table>
+    </database>
+</pma_xml_export>
